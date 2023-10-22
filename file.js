@@ -1,8 +1,172 @@
 let input = document.getElementById('input')
 let span = document.querySelector('span')
 
-input.addEventListener('change', (event) => {
-    let imge_file = event.target.files[0]
-    console.log(imge_file)
+sessionStorage.setItem("token", "bearer hdhfhffbbddsddd admin")
 
+
+
+$(function() {
+    $(".translate").change(function() {
+        var langue = $(this).val();
+        sessionStorage.setItem("langue", langue)
+    })
+})
+
+var langMenu = {
+    '0': {
+        'home': 'accueil',
+        'publications': 'publications',
+        'pubsousmanu': {
+            'actualite': 'actualités',
+            'rapports': 'rapports',
+            'offres': 'offres'
+        },
+        'projets': 'projets',
+        'projet': {
+            'encours': 'projets encours',
+            'realise': 'projets réaliser'
+        },
+        'apropos': 'apropos',
+        'contact': 'contactez-nous'
+    },
+    '1': {
+        'home': 'Home',
+        'publication': 'publications',
+        'pubsousmanu': {
+            'actualite': 'news',
+            'rapports': 'reports',
+            'offres': 'offers'
+        },
+        'projets': 'projects',
+        'projet': {
+            'encours': 'current projects',
+            'realise': 'projects carried out'
+        },
+        'apropos': 'about',
+        'contact': 'contact us'
+    },
+    '2': {
+        'home': 'Hogar',
+        'publication': 'publicaciones',
+        'pubsousmanu': {
+            'actualite': 'noticias',
+            'rapports': 'informes',
+            'offres': 'ofertas'
+        },
+        'projets': 'proyectos',
+        'projet': {
+            'encours': 'proyectos en curso',
+            'realise': 'proyectos realizados'
+        },
+        'apropos': 'acerca de',
+        'contact': 'Contáctenos'
+    },
+    '3': {
+        'home': 'home',
+        'publication': 'machapisho',
+        'pubsousmanu': {
+            'actualite': 'habari',
+            'rapports': 'ripoti',
+            'offres': 'inatoa'
+        },
+        'projets': 'miradi',
+        'projet': {
+            'encours': 'miradi ya sasa',
+            'realise': 'miradi iliyotekelezwa'
+        },
+        'apropos': 'kuhusu sisi',
+        'contact': 'Wasiliana nasi'
+    },
+}
+
+
+var langFooter = {
+    '0': {
+        'Contanct': 'Contanctez-nous',
+        'partenaire': 'partenaires',
+        'publication': 'publication',
+        'pubsous': {
+            'projets': 'Projets encours',
+            'actualite': 'actualités',
+            'rapports': 'rapports'
+        },
+        'social': 'Reseaux social',
+        'logo': 'partenaires logo',
+    },
+    '1': {
+        'Contanct': 'Contact us',
+        'partenaire': 'partners',
+        'publication': 'publication',
+        'pubsous': {
+            'projets': 'Current projects',
+            'actualite': 'news',
+            'rapports': 'reports'
+        },
+        'social': 'Social networks',
+        'logo': 'partners logo',
+    },
+    '2': {
+        'Contanct': 'Contáctenos',
+        'partenaire': 'socios',
+        'publication': 'publicación',
+        'pubsous': {
+            'projets': 'Proyectos en curso',
+            'actualite': 'noticias',
+            'rapports': 'informes'
+        },
+        'social': 'Redes sociales',
+        'logo': 'socios logo',
+    },
+    '3': {
+        'Contanct': 'Wasiliana nasi',
+        'partenaire': 'washirika',
+        'publication': 'uchapishaji',
+        'pubsous': {
+            'projets': 'Miradi ya sasa',
+            'actualite': 'habari',
+            'rapports': 'ripoti'
+        },
+        'social': 'Mitandao ya kijamii',
+        'logo': 'washirika logo',
+    }
+}
+
+var langBody = {
+    '0': {
+        'Contanct': 'Contanctez-nous',
+        'partenaire': 'partenaires',
+        'publication': 'publication',
+        'pubsous': {
+            'projet': 'Projets encours',
+            'actualite': 'actualités',
+            'rapports': 'rapports'
+        },
+        'logo': 'partenaires logo',
+    },
+}
+
+
+$(function() {
+    $(".translate").click(function() {
+        var langue = $(this).attr('id');
+        $(".langs").each(function(index, element) {
+            $(this).text(langFooter[langue][$(this).attr('key')]);
+            $(this).text(langFooter[langue]['pubsous'][$(this).attr('key')]);
+        });
+    });
+})
+
+$(function() {
+    $(".translate").change(function() {
+        // var langue = $(this).val();
+        var langue = sessionStorage.getItem("langue");
+        console.log(langue)
+        $(".langs").each(function(index, element) {
+            $(this).text(langFooter[langue][$(this).attr('key')]);
+            $(this).text(langFooter[langue]['pubsous'][$(this).attr('key')]);
+            $(this).text(langMenu[langue][$(this).attr('key')]);
+            $(this).text(langMenu[langue]['pubsousmanu'][$(this).attr('key')]);
+            $(this).text(langMenu[langue]['projet'][$(this).attr('key')]);
+        });
+    });
 })
