@@ -3,12 +3,11 @@ let span = document.querySelector('span')
 
 sessionStorage.setItem("token", "bearer hdhfhffbbddsddd admin")
 
-
-
 $(function() {
     $(".translate").change(function() {
         var langue = $(this).val();
-        sessionStorage.setItem("langue", langue)
+        sessionStorage.setItem("lang", langue)
+        sessionStorage.setItem("langue", sessionStorage.getItem("lang"))
     })
 })
 
@@ -170,3 +169,16 @@ $(function() {
         });
     });
 })
+
+
+
+var langSession = sessionStorage.getItem("langue");
+if (langSession !== null) {
+    $(".langs").each(function(index, element) {
+        $(this).text(langFooter[langSession][$(this).attr('key')]);
+        $(this).text(langFooter[langSession]['pubsous'][$(this).attr('key')]);
+        $(this).text(langMenu[langSession][$(this).attr('key')]);
+        $(this).text(langMenu[langSession]['pubsousmanu'][$(this).attr('key')]);
+        $(this).text(langMenu[langSession]['projet'][$(this).attr('key')]);
+    });
+}
