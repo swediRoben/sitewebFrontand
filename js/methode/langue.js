@@ -3,12 +3,10 @@ let span = document.querySelector('span')
 
 sessionStorage.setItem("token", "bearer hdhfhffbbddsddd admin")
 
-$(function() {
-    $(".translate").change(function() {
-        var langue = $(this).val();
-        sessionStorage.setItem("lang", langue)
-        sessionStorage.setItem("langue", sessionStorage.getItem("lang"))
-    })
+$(".translate").change(function() {
+    var langue = $(this).val();
+    sessionStorage.setItem("lang", langue)
+    sessionStorage.setItem("langue", sessionStorage.getItem("lang"))
 })
 
 var langMenu = {
@@ -181,4 +179,14 @@ if (langSession !== null) {
         $(this).text(langMenu[langSession]['pubsousmanu'][$(this).attr('key')]);
         $(this).text(langMenu[langSession]['projet'][$(this).attr('key')]);
     });
+}
+
+
+function langue() {
+    var langSession = sessionStorage.getItem("langue");
+    if (langSession == 0) {
+        return "fr"
+    } else {
+        return "en"
+    }
 }
