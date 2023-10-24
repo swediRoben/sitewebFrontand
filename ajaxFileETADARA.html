@@ -385,7 +385,9 @@ to match your specific requirements, such as changing the upload directory or
 using a different
 
 
-Bien sûr, pour enregistrer l'image dans le dossier profile dans le répertoire resources de votre projet Spring Boot, vous pouvez modifier l'implémentation de FileSystemStorageService pour utiliser la classe FileSystemRepository au lieu de FileSystemResourceLoader. Voici une version mise à jour de l'implémentation de FileSystemStorageService :
+Bien sûr, pour enregistrer l'image dans le dossier profile dans le répertoire resources de votre projet Spring Boot,
+ vous pouvez modifier l'implémentation de FileSystemStorageService pour utiliser la classe FileSystemRepository 
+ au lieu de FileSystemResourceLoader. Voici une version mise à jour de l'implémentation de FileSystemStorageService :
 
 @Service
 public class FileSystemStorageService implements StorageService {
@@ -410,7 +412,15 @@ public class FileSystemStorageService implements StorageService {
     }
 }
 
-Dans ce code mis à jour, nous avons modifié la constante UPLOAD_DIR pour qu'elle soit "src/main/resources/profile", qui est le chemin d'accès au dossier profile dans le répertoire resources de votre projet Spring Boot. La méthode storeImage maintenant écrit le fichier téléchargé dans un nouveau fichier dans le dossier profile en utilisant la méthode Files.write. La méthode renvoie l'URL du nouveau fichier, qui est construite en utilisant le chemin d'accès au dossier profile et le nom de fichier original. La méthode loadImage maintenant utilise la classe ClassPathResource pour charger le fichier d'image à partir du dossier profile dans le répertoire resources.
+Dans ce code mis à jour, nous avons modifié la constante UPLOAD_DIR pour
+ qu'elle soit "src/main/resources/profile", qui est le chemin d'accès au dossier
+  profile dans le répertoire resources de votre projet Spring Boot. La méthode 
+  storeImage maintenant écrit le fichier téléchargé dans un nouveau fichier dans 
+  le dossier profile en utilisant la méthode Files.write. La méthode renvoie
+   l'URL du nouveau fichier, qui est construite en utilisant le chemin d'accès au
+    dossier profile et le nom de fichier original. La méthode loadImage maintenant 
+    utilise la classe ClassPathResource pour charger le fichier d'image à partir du 
+    dossier profile dans le répertoire resources.
 
 Notez que vous devrez créer le dossier profile dans le répertoire resources 
 de votre projet
@@ -421,3 +431,88 @@ spring.resources.static-locations=classpath:/profile/
 
 Cela rendra le dossier profile disponible en tant que ressource statique 
 dans votre application Spring Boot.
+
+
+PLUSIEUR FICHIER 
+
+
+To upload multiple files using AJAX with Spring Boot, you can follow these steps:
+
+Create a Spring Boot project and add the necessary dependencies for handling file 
+uploads. You can use the spring-boot-starter-web dependency for the web layer and 
+the spring-boot-starter-tomcat dependency for the server.
+
+Create a controller method that handles the file upload. This method should accept
+ a MultipartFile object as a parameter. You can use the @RequestParam annotation 
+ to specify the name of the file input field in the HTML form.
+
+In the HTML form, add a file input field that allows the user to select multiple
+ files. You can use the multiple attribute to allow the user to select multiple files.
+
+Use JavaScript to handle the file upload. You can use the XMLHttpRequest object
+ to send the file data to the server. Here's an example code snippet:
+
+var formData = new FormData();
+var files = $('#fileInput')[0].files;
+for (var i = 0; i < files.length; i++) {
+    formData.append('files[]', files[i]);
+}
+$.ajax({
+    url: '/upload',
+    type: 'POST',
+    data: formData,
+    processData: false,
+    contentType: false,
+    success: function(response) {
+        console.log(response);
+    },
+    error: function(xhr, status, error) {
+        console.log(error);
+    }
+});
+
+In this example, we create a FormData object and append each selected file
+ to it using the append method. We then use the $.ajax method to send the form data 
+ to the server using a POST request.
+
+In the controller method, handle the file upload using the MultipartFile object. 
+You can use the getOriginalFilename method to get the name of each file and
+
+the getBytes method to get the contents of each file.
+Here's an example code snippet for the controller method:
+
+@PostMapping("/upload")
+public ResponseEntity<?> uploadFiles(@RequestParam("files[]") MultipartFile[] files) {
+    for (MultipartFile file : files) {
+        String filename = file.getOriginalFilename();
+        byte[] bytes = file.getBytes();
+        // Do something with the file data
+    }
+    return ResponseEntity.ok().build();
+}
+
+In this example, we accept an array of MultipartFile objects as a parameter and loop through each file. 
+We get the name of each file using the getOriginalFilename method and the contents of each file using the
+ getBytes method. You can then do something with the file data, such as saving it to a database or uploading 
+ it to a cloud storage service.
+
+That's it! With these steps, you should be able to upload multiple files using AJAX with Spring Boot.
+
+montrer moi html code
+
+
+avatar
+Voici un exemple de code HTML pour créer un formulaire qui permet 
+à l'utilisateur de sélectionner plusieurs fichiers à télécharger :
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="files[]" multiple>
+    <button type="submit">Télécharger</button>
+</form>
+
+Dans ce formulaire, nous utilisons l'attribut enctype avec la valeur multipart/form-data 
+pour indiquer que nous envoyons des données binaires, y compris les fichiers. Nous utilisons 
+également l'attribut multiple pour permettre à l'utilisateur de sélectionner plusieurs fichiers.
+
+Lorsque l'utilisateur soumet le formulaire, les fichiers sélectionnés seront envoyés au serveur à l'URL
+ spécifiée dans l'attribut action du formulaire.
