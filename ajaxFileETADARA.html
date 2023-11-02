@@ -250,5 +250,236 @@ That's it! With these steps, you should be able to upload multiple files using A
     <button type="submit">Télécharger</button>
 </form>
 
+<<<<<<< HEAD
 Dans ce formulaire, nous utilisons l'attribut enctype avec la valeur multipart/form-data pour indiquer que nous envoyons des données binaires, y compris les fichiers. Nous utilisons également l 'attribut multiple pour permettre à l'utilisateur de sélectionner
                 plusieurs fichiers. Lorsque l 'utilisateur soumet le formulaire, les fichiers sélectionnés seront envoyés au serveur à l'URL spécifiée dans l 'attribut action du formulaire.
+=======
+Dans ce formulaire, nous utilisons l'attribut enctype avec la valeur multipart/form-data 
+pour indiquer que nous envoyons des données binaires, y compris les fichiers. Nous utilisons 
+également l'attribut multiple pour permettre à l'utilisateur de sélectionner plusieurs fichiers.
+
+Lorsque l'utilisateur soumet le formulaire, les fichiers sélectionnés seront envoyés au serveur à l'URL
+ spécifiée dans l'attribut action du formulaire.
+
+
+
+
+
+
+
+ Sure, here's an example of how you can create a project with AJAX to save name, last-name, and picture of a user in Spring Boot:
+
+First, create a Spring Boot project using your preferred IDE or command line tool.
+
+Add the following dependencies to your project's pom.xml file:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
+Create a User entity class with the following properties:
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Lob
+    private byte[] picture;
+
+    // getters and setters
+}
+
+Create a UserRepository interface that extends JpaRepository:
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+
+Create a UserController class that handles HTTP requests for the user form:
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping
+    public ResponseEntity<User> saveUser(@RequestParam("firstName") String firstName,
+                                         @RequestParam("lastName") String lastName,
+                                         @RequestParam("picture") byte[] picture) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPicture(picture);
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+}
+
+Create a Thymeleaf template that displays the user form:
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="/users" method="post" enctype="multipart/form-data">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+        <label for="picture">Picture:</label>
+        <input type="file" id="picture" name="picture"><br><br>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>
+
+Run the Spring Boot application and navigate to http://localhost:8080/ in your web browser. You should see the user form.
+
+Fill out the form and click the "Save" button. The user's name, last name, and picture should be saved to the database.
+
+That's it! You now have a Spring Boot project with AJAX that allows users to save their name, last name, and picture in a database.
+
+sand this  in ajax in spring boot
+
+
+avatar
+Sure, here's an example of how you can use AJAX to save name, last-name, and picture of a user in Spring Boot:
+
+First, create a Spring Boot project using your preferred IDE or command line tool.
+
+Add the following dependencies to your project's pom.xml file:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+
+Create a User entity class with the following properties:
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Lob
+    private byte[] picture;
+
+    // getters and setters
+}
+
+Create a UserRepository interface that extends JpaRepository:
+public interface UserRepository extends JpaRepository<User, Long> {
+}
+
+Create a UserController class that handles HTTP requests for the user form:
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping
+    public ResponseEntity<User> saveUser(@RequestParam("firstName") String firstName,
+                                         @RequestParam("lastName") String lastName,
+                                         @RequestParam("picture") byte[] picture) {
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPicture(picture);
+        userRepository.save(user);
+        return ResponseEntity.ok(user);
+    }
+}
+
+Create a Thymeleaf template that displays the user form:
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form id="userForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br><br>
+        <label for="picture">Picture:</label>
+        <input type="file" id="picture" name="picture"><br><br>
+        <button type="submit">Save</button>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#userForm").submit(function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "/users",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        alert("User saved successfully!");
+                        $("#firstName").val("");
+                        $("#lastName").val("");
+                        $("#picture").val("");
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Error saving user: " + error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+>>>>>>> 8db2dcacb2648f9f56279189f7b6ee1688231a48
