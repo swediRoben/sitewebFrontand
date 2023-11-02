@@ -189,6 +189,7 @@
                         <div class="blog-box row">
                             <div class="col-md-4">
                                 <div class="post-media">
+
                                     <a href="tech-single.html" title="">
                                         <img src="upload/tech_blog_02.jpg" alt="" class="img-fluid">
                                         <div class="hovereffect"></div>
@@ -259,6 +260,25 @@
             <!-- end row -->
         </div>
         <!-- end container -->
+
+        <div class="blog-box row">
+            <form action="/upload" method="post" class="form-control" id="profile-form" encType="multipart/form-data">
+                <label for="type">type image :</label>
+                <input type="text" id="type" name="type"><br>
+                <label for="profile-lastname">User :</label>
+                <input type="text" id="idusercreate" name="idusercreate"><br>
+                <label for="profile-lastname">titre :</label>
+                <input type="text" id="titre" name="titre"><br>
+                <label for="profile-lastname">contenue :</label>
+                <input type="text" id="content" name="content"><br>
+                <label for="profile-lastname">Langue :</label>
+                <input type="text" id="langue" name="langue">type image <br>
+                <input type="file" name="files[]" id="files" multiple /><br>
+                <button type="submit">Enregistrer</button><br>
+            </form><br><br><br>
+        </div>
+        <hr class="invis">
+
     </section>
 
 
@@ -355,6 +375,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/methode/index.js"></script>
 
 </body>
 
