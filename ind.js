@@ -13,7 +13,10 @@ var index = {
     '0': {
         "titre": "titre",
         "img": {
-            "1": "url"
+            "1": {
+                'img': 'url',
+                'description': ''
+            }
         },
         "descritiption": "descr",
         "langue": 0
@@ -21,7 +24,10 @@ var index = {
     '1': {
         "titre": "titre",
         "img": {
-            "1": "url"
+            "1": {
+                'img': 'url',
+                'description': ''
+            }
         },
         "descritiption": "descr",
         "langue": 0
@@ -29,7 +35,10 @@ var index = {
     '2': {
         "titre": "titre",
         "img": {
-            "1": "url"
+            "1": {
+                'img': 'url',
+                'description': ''
+            }
         },
         "descritiption": "descr",
         "langue": 0
@@ -37,7 +46,10 @@ var index = {
     '3': {
         "titre": "titre",
         "img": {
-            "1": "url"
+            "1": {
+                'img': 'url',
+                'description': ''
+            }
         },
         "descritiption": "descr",
         "langue": 0
