@@ -9,129 +9,6 @@ $(".translate").change(function() {
     sessionStorage.setItem("langue", sessionStorage.getItem("lang"))
 })
 
-var index = {
-    '0': {
-        "titre": "titre",
-        "img": {
-            "1": {
-                'img': 'url',
-                'description': ''
-            }
-        },
-        "descritiption": "descr",
-        "langue": 0
-    },
-    '1': {
-        "titre": "titre",
-        "img": {
-            "1": {
-                'img': 'url',
-                'description': ''
-            }
-        },
-        "descritiption": "descr",
-        "langue": 0
-    },
-    '2': {
-        "titre": "titre",
-        "img": {
-            "1": {
-                'img': 'url',
-                'description': ''
-            }
-        },
-        "descritiption": "descr",
-        "langue": 0
-    },
-    '3': {
-        "titre": "titre",
-        "img": {
-            "1": {
-                'img': 'url',
-                'description': ''
-            }
-        },
-        "descritiption": "descr",
-        "langue": 0
-    },
-}
-
-
-var menuApropos = {
-    '0': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    },
-    '1': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    },
-    '2': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    },
-    '3': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-
-    }
-}
-
-var aproposDesciption = {
-    '0': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    },
-    '1': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    },
-    '2': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    },
-    '3': {
-        '1': {
-            'key': '1',
-            'description': 'desc'
-        },
-    }
-}
-
-var contanct = {
-    '0': {
-        'titre': 'titre',
-        'description': 'desc'
-    },
-    '1': {
-        'titre': 'titre',
-        'description': 'desc'
-    },
-    '2': {
-        'titre': 'titre',
-        'description': 'desc'
-    },
-    '3': {
-        'titre': 'titre',
-        'description': 'desc'
-    }
-}
-
-
 $(function() {
     $(".translate").click(function() {
         var langue = $(this).attr('id');
@@ -147,8 +24,14 @@ $(function() {
         // var langue = $(this).val();
         var langue = sessionStorage.getItem("langue");
         console.log(langue)
+
         $(".langs").each(function(index, element) {
             $(this).text(menuApropos[langue][$(this).attr('key')]);
+            $(".langsSous").each(menuApropos[langue]["0"], function(i, value) {
+                $(this).text(value[$(this).attr('key')]);
+            });
+
+
             $(this).text(menuApropos[langue]['pubsous'][$(this).attr('key')]);
             $(this).text(index[langue][$(this).attr('key')]);
             $(this).text(index[langue]['pubsousmanu'][$(this).attr('key')]);
