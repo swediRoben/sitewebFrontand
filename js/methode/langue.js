@@ -4,12 +4,12 @@ let span = document.querySelector('span')
 sessionStorage.setItem("token", "bearer hdhfhffbbddsddd admin")
 
 $(".translate").change(function() {
-    var langue = $(this).val();
+    let langue = $(this).val();
     sessionStorage.setItem("lang", langue)
     sessionStorage.setItem("langue", sessionStorage.getItem("lang"))
 })
 
-var langMenu = {
+let langMenu = {
     '0': {
         'home': 'accueil',
         'publications': 'publications',
@@ -77,7 +77,7 @@ var langMenu = {
 }
 
 
-var langFooter = {
+let langFooter = {
     '0': {
         'Contanct': 'Contanctez-nous',
         'partenaire': 'partenaires',
@@ -128,7 +128,7 @@ var langFooter = {
     }
 }
 
-var langBody = {
+let langBody = {
     '0': {
         'Contanct': 'Contanctez-nous',
         'partenaire': 'partenaires',
@@ -145,7 +145,7 @@ var langBody = {
 
 $(function() {
     $(".translate").click(function() {
-        var langue = $(this).attr('id');
+        let langue = $(this).attr('id');
         $(".langs").each(function(index, element) {
             $(this).text(langFooter[langue][$(this).attr('key')]);
             $(this).text(langFooter[langue]['pubsous'][$(this).attr('key')]);
@@ -155,8 +155,8 @@ $(function() {
 
 $(function() {
     $(".translate").change(function() {
-        // var langue = $(this).val();
-        var langue = sessionStorage.getItem("langue");
+        // let langue = $(this).val();
+        let langue = sessionStorage.getItem("langue");
         console.log(langue)
         $(".langs").each(function(index, element) {
             $(this).text(langFooter[langue][$(this).attr('key')]);
@@ -170,7 +170,7 @@ $(function() {
 
 
 
-var langSession = sessionStorage.getItem("langue");
+let langSession = sessionStorage.getItem("langue");
 if (langSession !== null) {
     $(".langs").each(function(index, element) {
         $(this).text(langFooter[langSession][$(this).attr('key')]);
@@ -183,7 +183,7 @@ if (langSession !== null) {
 
 
 function langue() {
-    var langSession = sessionStorage.getItem("langue");
+    let langSession = sessionStorage.getItem("langue");
     if (langSession == 0) {
         return "fr"
     } else {
