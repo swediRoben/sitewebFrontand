@@ -1,5 +1,5 @@
 $(function() {
-    var lang = langue();
+    let lang = langue();
 
     $.ajax({
         type: "GET",

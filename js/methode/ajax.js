@@ -4,7 +4,7 @@ $(function() {
     // var blog = getUrlParameter('blog');
 
     function get(url, param, lang, token) {
-        var data = new Object();
+        let data = new Object();
         $.ajax({
             type: "GET",
             url: url,
@@ -20,7 +20,24 @@ $(function() {
         return data;
     }
 
-    var dataJson = {
+    function getImage(url, id,filename, lang, token) {
+        let data = new Object();
+        $.ajax({
+            type: "GET",
+            url: url+'/'+id+'/'+filename,
+            dataType: "json",
+            headers: {
+                "Accept-Language": lang,
+                "token": token
+            },
+            success: function(response) {
+                data['response'] = response.data.content;
+            }
+        });
+        return data;
+    }
+
+    let dataJson = {
         "mail": "jym@gmail.com",
         "typemail": 0,
         "telephone": "0990979",
@@ -80,8 +97,8 @@ $(function() {
         return sessionStorage.getItem("response");
     }
 
-    var res = del("http://localhost:3031/adresse/", 2, "fr", "");
-    var resultat = get("http://localhost:3031/adresse/", "", "fr", "");
+    let res = del("http://localhost:3031/adresse/", 2, "fr", "");
+    let resultat = get("http://localhost:3031/adresse/", "", "fr", "");
     console.log(resultat)
 
     $.each(resultat, function(i, data) {
