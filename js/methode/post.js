@@ -2,6 +2,18 @@ $(function() {
     let lang = langue();
     let langSession = sessionStorage.getItem("langue");
 
+    // $("#index").submit(function(event) {
+    //     alert("on")
+    //     event.preventDefault();
+    //     var formData = new FormData(this);
+    //     let files = $('#file')[0].files;
+    //     for (const element of files) {
+    //         formData.append('file[]', element);
+    //     }
+    //     console.log(formData)
+    //     let response = post("http://localhost:3031/publication/", formData, lang, langSession);
+    //     console.log(response)
+    // });
 
     // if (langSession !== null) {
     //     $.ajax({
@@ -75,30 +87,30 @@ $(function() {
     // });
 
 
-    $("#profile-form").submit(function(event) {
-        event.preventDefault();
-        let formData = new FormData();
-        let files = $('#files')[0].files;
-        for (const element of files) {
-            formData.append('files[]', element);
-        }
-        $.ajax({
-            url: 'http://localhost:3031/publication/',
-            type: 'POST',
-            data: JSON.stringify(formData),
-            processData: false,
-            contentType: "application/json",
-            headers: {
-                "Accept-Language": lang,
-                "token": ""
-            },
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                console.log(error);
-            }
-        });
-    });
+    // $("#profile-form").submit(function(event) {
+    //     event.preventDefault();
+    //     let formData = new FormData();
+    //     let files = $('#files')[0].files;
+    //     for (const element of files) {
+    //         formData.append('files[]', element);
+    //     }
+    //     $.ajax({
+    //         url: 'http://localhost:3031/publication/',
+    //         type: 'POST',
+    //         data: JSON.stringify(formData),
+    //         processData: false,
+    //         contentType: "application/json",
+    //         headers: {
+    //             "Accept-Language": lang,
+    //             "token": ""
+    //         },
+    //         success: function(response) {
+    //             console.log(response);
+    //         },
+    //         error: function(xhr, status, error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // });
 
-})
+});
