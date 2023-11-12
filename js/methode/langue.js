@@ -157,7 +157,6 @@ $(function() {
     $(".translate").change(function() {
         // let langue = $(this).val();
         let langue = sessionStorage.getItem("langue");
-        console.log(langue)
         $(".langs").each(function(index, element) {
             $(this).text(langFooter[langue][$(this).attr('key')]);
             $(this).text(langFooter[langue]['pubsous'][$(this).attr('key')]);

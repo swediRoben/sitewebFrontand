@@ -7,7 +7,8 @@ $(function() {
         dataType: "json",
         headers: {
             "Accept-Language": lang,
-            "token": ""
+            "token": "",
+            "Access-Control-Allow-Origin": "*"
         },
         success: function(response) {
             $.each(response.data.content, function(i, data) {

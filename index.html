@@ -100,10 +100,10 @@
                         <div class="shadoweffect">
                             <div class="shadow-desc">
                                 <div class="blog-meta">
-                                    <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
-                                    <h4><a href="tech-single.html" title="" class="titre">Say hello to real handmade office furniture! Clean & beautiful design</a></h4>
-                                    <small><a href="tech-single.html" title="" class="date">24 July, 2017</a></small>
-                                    <small><a href="tech-author.html" title="" class="user">by Amanda</a></small>
+                                    <h4>
+                                        <a href="" title="" class="titre"></a>
+                                    </h4>
+                                    <small><a href="" title="" class="date"></a></small>
                                 </div>
                                 <!-- end meta -->
                             </div>
@@ -117,14 +117,16 @@
 
                 <div class="second-slot">
                     <div class="masonry-box post-media">
-                        <img src="upload/tech_02.jpg" alt="" class="img-fluid act1">
+                        <img src="" alt="" class="img-fluid act2">
                         <div class="shadoweffect">
                             <div class="shadow-desc">
                                 <div class="blog-meta">
-                                    <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span>
-                                    <h4><a href="tech-single.html" title="">Do not make mistakes when choosing web hosting</a></h4>
-                                    <small><a href="tech-single.html" title="">03 July, 2017</a></small>
-                                    <small><a href="tech-author.html" title="">by Jessica</a></small>
+                                    <!-- <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span> -->
+                                    <h4>
+                                        <a href="" title="" class="titre2"></a>
+                                    </h4>
+                                    <small><a href="" title="" class="date2"></a></small>
+                                    <!-- <small><a href="tech-author.html" title="">by Jessica</a></small> -->
                                 </div>
                                 <!-- end meta -->
                             </div>
@@ -136,16 +138,18 @@
                 </div>
                 <!-- end second-side -->
 
-                <div class="last-slot">
+                <div class="second-slot">
                     <div class="masonry-box post-media">
-                        <img src="upload/tech_03.jpg" alt="" class="img-fluid act2">
+                        <img src="" alt="" class="img-fluid act1">
                         <div class="shadoweffect">
                             <div class="shadow-desc">
                                 <div class="blog-meta">
-                                    <span class="bg-orange"><a href="tech-category-01.html" title="">Technology</a></span>
-                                    <h4><a href="tech-single.html" title="">The most reliable Galaxy Note 8 images leaked</a></h4>
-                                    <small><a href="tech-single.html" title="">01 July, 2017</a></small>
-                                    <small><a href="tech-author.html" title="">by Jessica</a></small>
+                                    <!-- <span class="bg-orange"><a href="tech-category-01.html" title="">Gadgets</a></span> -->
+                                    <h4>
+                                        <a href="" title="" class="titre1"></a>
+                                    </h4>
+                                    <small><a href="" title="" class="date1"></a></small>
+                                    <!-- <small><a href="tech-author.html" title="">by Jessica</a></small> -->
                                 </div>
                                 <!-- end meta -->
                             </div>
@@ -156,6 +160,7 @@
                     <!-- end post-media -->
                 </div>
                 <!-- end second-side -->
+
             </div>
             <!-- end masonry -->
         </div>
@@ -262,7 +267,8 @@
         <!-- end container -->
 
         <div class="blog-box row">
-            <form action="#" method="post" class="form-control" id="index" encType="multipart/form-data">
+            <h3>publication content</h3>
+            <form action="#" method="post" class="form-control" id="publication" encType="multipart/form-data">
                 <label for="type">type Publication:</label>
                 <input type="text" id="type" name="type"><br>
                 <label for="profile-lastname">User :</label>
@@ -272,9 +278,31 @@
                 <label for="profile-lastname">contenue :</label>
                 <input type="text" id="content" name="content"><br>
                 <label for="profile-lastname">Langue :</label>
-                <input type="text" id="langue" name="langue">type image <br>
+                <input type="text" id="langue" name="langue"> <br> type image <br>
                 <input type="text" id="typefichier" name="typefichier">
                 <input type="file" name="files[]" id="files" multiple /><br>
+                <button type="submit">Enregistrer</button><br>
+            </form><br><br><br>
+        </div>
+        <br><br><br>
+        <hr class="invis">
+        <br><br><br>
+        <div class="blog-box row">
+            <h3>index content</h3>
+            <form action="#" method="post" class="form-control" id="indexJson" encType="multipart/form-data">
+                <label for="titre">id:</label>
+                <input type="text" id="id" name="id"><br>
+                <label for="titre">titre:</label>
+                <input type="text" id="titre" name="titre"><br>
+                <label for="description">description :</label>
+                <input type="text" id="description" name="description"><br>
+                <label for="titreContent">titre 2 :</label>
+                <input type="text" id="titreContent" name="titreContent"><br>
+                <label for="content">content :</label>
+                <input type="text" id="content" name="content"><br>
+                <label htmlfor="profile-lastname">Langue :</label>
+                <input type="text" id="langue" name="langue" />
+                <input type="file" name="files[]" id="fileIndex" multiple /><br>
                 <button type="submit">Enregistrer</button><br>
             </form><br><br><br>
         </div>
@@ -372,7 +400,6 @@
     <script src="js/methode/adresse.js"></script>
     <script src="js/methode/ajax.js"></script>
     <script src="js/methode/index.js"></script>
-    <script src="js/methode/post.js"></script>
     <script src="js/methode/langue.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
