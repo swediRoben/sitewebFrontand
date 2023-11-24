@@ -2,7 +2,7 @@ $(function() {
     let lang = langue();
     let langSession = sessionStorage.getItem("langue");
 
-    $('.input-select').append('<option value="">All Categories</option>');
+    $('.input-select').append('<option selected>All Categories</option>');
 
     $.ajax({
         type: "GET",
@@ -20,7 +20,64 @@ $(function() {
         }
     });
 
+    // POUR LE FORMULAIRE 
 
+    $('.type').append('<option selected >TYPE DE PUBLICATION</option>');
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3031/constante/type",
+        dataType: "json",
+        headers: {
+            "Accept-Language": lang,
+            "token": ""
+        },
+        success: function(response) {
+            $.each(response.data, function(i, data) {
+                $('.type').append('<option value="' + data.key + '">' + data.value + '</option>');
+
+            });
+        }
+    });
+
+
+    $('.typefichier').append('<option selected>TYPE DE FICHIER</option>');
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3031/constante/typefichier",
+        dataType: "json",
+        headers: {
+            "Accept-Language": lang,
+            "token": ""
+        },
+        success: function(response) {
+            $.each(response.data, function(i, data) {
+                $('.typefichier').append('<option value="' + data.key + '">' + data.value + '</option>');
+
+            });
+        }
+    });
+
+
+    $('.langue').append('<option selected>LANGUE</option>');
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:3031/constante/langue",
+        dataType: "json",
+        headers: {
+            "Accept-Language": lang,
+            "token": ""
+        },
+        success: function(response) {
+            $.each(response.data, function(i, data) {
+                $('.langue').append('<option value="' + data.key + '">' + data.value + '</option>');
+
+            });
+        }
+    });
+
+    // SELECT BY TYPE
     $(".input-select").change(function(e) {
         e.preventDefault();
         $(".table .tbody tr").remove();
@@ -54,7 +111,22 @@ $(function() {
         });
     });
 
+    // CHANGE FILE BY TYPE FICHIER
+    $("#formFile").hide();
+    $(".urlFile").hide();
+    $(".typefichier").change(function(e) {
+        e.preventDefault();
+        let val = $(this).val();
+        if (val !== "1") {
+            $(".urlFile").hide();
+            $("#formFile").show();
+        } else {
+            $("#formFile").hide();
+            $(".urlFile").show();
+        }
+    });
 
+    // AFFICHER TABLEAU
     $(".table .tbody tr").remove();
     let lange = 0;
     if (langSession !== null) {
@@ -84,6 +156,8 @@ $(function() {
             });
         }
     });
+
+    // RECHERCHE
 
     $(".search-f").submit(function(e) {
         e.preventDefault();
@@ -123,32 +197,99 @@ $(function() {
 
     });
 
+
+
     let form = {
         'type': '',
+        'typeValue': '',
         'idusercreate': '',
-        'Contanct': '',
         'typefichier': '',
+        'typefichierValue': '',
         'titre': '',
         'content': '',
         'langue': '',
-        'urlFile': '',
+        'langueValue': '',
+        'urlFile': ''
     }
 
-    // <form action="#" method="post" className="form-control" id="indexJson" encType="multipart/form-data">
-    //             <label htmlFor="titre">id:</label>
-    //             <input type="text" id="id" name="id" /><br />
-    //             <label htmlFor="titre">titre:</label>
-    //             <input type="text" id="titre" name="titre" /><br />
-    //             <label htmlFor="description">description :</label>
-    //             <input type="text" id="description" name="description" /><br />
-    //             <label htmlFor="titreContent">titre 2 :</label>
-    //             <input type="text" id="titreContent" name="titreContent" /><br />
-    //             <label htmlFor="content">content :</label>
-    //             <input type="text" id="content" name="content" /><br />
-    //             <label htmlfor="profile-lastname">Langue :</label>
-    //             <input type="text" id="langue" name="langue" />
-    //             <input type="file" name="files[]" id="fileIndex" multiple accept="JPEG" /><br />
-    //             <button type="submit">Enregistrer</button><br /></form>
+    $(".search-f").submit(function(e) {
+        e.preventDefault();
 
-    console.log(langFooter.Contanct)
+        let lange = 0;
+        if (langSession !== null) {
+            lang = langSession;
+        }
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3031/publication/?langue=" + lange + "&type=0",
+            dataType: "json",
+            headers: {
+                "Accept-Language": lang,
+                "token": ""
+            },
+            success: function(response) {
+
+                $.each(response.data.content, function(i, data) {
+                    let path = data.image[0].path;
+                    form.type = data.types.key;
+                    form.typeValue = data.types.value;
+                    form.idusercreate = data.idusermodif;
+                    form.typefichier = data.typefichiers.key;
+                    form.typefichierValue = data.typefichiers.value;
+                    form.titre = data.titre;
+                    form.content = data.content;
+                    form.langue = data.langues.key;
+                    form.langueValue = data.langues.value;
+                    if (data.typefichiers.key === 1) {
+                        form.urlFile = path;
+                        $(".urlFile").show();
+                    }
+
+                });
+            }
+        });
+        $(".titre").attr("value", form.titre);
+        $(".content").attr("value", form.content);
+        $(".urlFile").attr("value", form.urlFile);
+        $(".idusercreate").attr("value", form.idusercreate);
+        $('.type').append('<option value="' + form.type + '" selected>' + form.typeValue + '</option>');
+        $('.typefichier').append('<option value="' + form.typefichier + '" selected>' + form.typefichierValue + '</option>');
+        $('.langue').append('<option value="' + form.langue + '" selected>' + form.langueValue + '</option>');
+    });
+
+
+
+    $("#publication").submit(function(event) {
+        event.preventDefault();
+        let id = $(this).attr("key");
+        let method = $(this).attr("method");
+        console.log(method)
+        let formData = new FormData(this);
+        // formData.append('file[]', $('#files')[0].files[0]);
+        let files = $('#formFile')[0].files;
+        for (const element of files) {
+            formData.append("file[]", element);
+        }
+
+        $.ajax({
+            type: method,
+            url: "http://localhost:3031/publication/" + id,
+            data: formData,
+            scriptCharset: "utf-8",
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
+            headers: {
+                "Accept-Language": lang,
+                "token": "",
+                "Access-Control-Allow-Origin": "*"
+            },
+            success: function(response) {
+                console.log(response.message)
+
+            }
+        });
+
+    });
+
 });

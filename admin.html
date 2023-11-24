@@ -122,38 +122,47 @@
 
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">Modal Heading</h4>
+                                <h4 class="modal-title">PUBLICATION</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
 
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                <form action="#" method="post" key="" className="form-control" id="publication" encType="multipart/form-data">
+                                    <div class="mb-3">
+                                        <input type="text" name="idusercreate" value="" class="form-control idusercreate" id="exampleFormControlInput1" hidden placeholder="user">
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="form-select type" name="type" value="" id="type" aria-label="Default select example">
+                                    </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="form-select typefichier" value="" name="typefichier" id="typefichier" aria-label="Default select example">
+                                    </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">TITRE DU CONTENU</label>
+                                        <input type="text" class="form-control titre" name="titre" value="" id="exampleFormControlInput1" placeholder="saisir le titre" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">CONTENU</label>
+                                        <textarea class="form-control content" name="content" value="" id="exampleFormControlTextarea1" rows="3" placeholder="saisir le contenu" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <select class="form-select langue" name="langue" value="" id="langue" aria-label="Default select example">
                                       </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Default file input example</label>
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                            </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">FICHIER</label>
+                                        <input type="file" name="files[]" value="" id="formFile" class="form-control" multiple />
+                                        <input type="url" name="urlFile" value="" class="form-control urlFile" id="exampleFormControlInput1" placeholder="lien de cette video" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <button class="btn btn-primary" type="submit">ENREGISTRER</button>
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
 
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit">Submit form</button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
                             </div>
 
                         </div>
